@@ -17,6 +17,7 @@ API.interceptors.request.use((config)=>{
             RefreshToken: `Bearer ${user.refreshToken}`
         }
     }
+    console.log(config)
     return config
 }, err => {
     console.log(err);
