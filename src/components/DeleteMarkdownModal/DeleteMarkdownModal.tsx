@@ -8,6 +8,7 @@ import {
   ModalBody,
   Text,
   Button,
+  CircularProgress,
 } from "@chakra-ui/react";
 import { SleepEntryInput } from "./DeleteMarkdownModal.styled";
 import { deleteMarkdown } from "../../api/markdown";
@@ -29,14 +30,19 @@ const DeleteMarkdownModal = ({
   deleteCurrentMarkdown,
 }: MarkdownProps) => {
   const [agreementTerm, setAgreementTerm] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const deleteEntry = () => {
+    setIsDeleting(true);
+    let deleting;
+
     (async function () {
       if (markdownId) {
         try {
           await deleteMarkdown(markdownId);
           deleteCurrentMarkdown(markdownId);
           getIsCreatingMarkdownValue(false);
+          setIsDeleting(false);
           setAgreementTerm("");
           onDeleteModalClose();
         } catch (err) {
@@ -92,7 +98,11 @@ const DeleteMarkdownModal = ({
               mt="3"
               type="submit"
             >
-              I understand the consequences
+              {isDeleting ? (
+                <CircularProgress isIndeterminate value={80} size="30px" />
+              ) : (
+                "I understand the consequences"
+              )}
             </Button>
           </ModalBody>
         </ModalContent>
