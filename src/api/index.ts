@@ -3,17 +3,34 @@ import {ENDPOINTS} from "../config/endpoints"
 
 export const API = axios.create({
     baseURL: ENDPOINTS.BASE_URL,
-    withCredentials: true,
-    
+    headers: { 'content-type': 'application/json', accept: 'application/json' },
+    withCredentials: true
+});
+
+API.interceptors.request.use((config)=>{
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    console.log(user)
+    if(user){
+        config.headers = {
+            ...config.headers,
+            Authorization: `Bearer ${user.accessToken}`,
+            RefreshToken: `Bearer ${user.refreshToken}`
+        }
+    }
+    return config
+}, err => {
+    console.log(err);
 })
 
 API.interceptors.response.use(response =>{
-    return response;
-}, err =>{
-    if(err.response?.data?.loginRequired){
-        localStorage.removeItem("user");
-        localStorage.setItem("session", "Your session has expired. Please login again.");
-        window.location.href = "/"
-    }
-    console.log(err)
+    console.log("Server Response" ,response);
+    return response
+},
+    error =>{
+        console.log("Server Response", error);
+        if(error.response.data?.isLoginRequired){
+            localStorage.removeItem("user")
+            window.location.href="/"
+        }
 })
+ 

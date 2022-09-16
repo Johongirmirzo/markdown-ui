@@ -82,6 +82,7 @@ const Home = () => {
         // createing new markdown
         try {
           const response = await createMarkdown({ markdown, markdownName });
+          // console.log("Newly Created Markdown", response);
           setMarkdownList([...markdownList, response.data]);
         } catch (err) {
           console.error(err);

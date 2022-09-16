@@ -83,7 +83,7 @@ const Login = () => {
               } else {
                 localStorage.removeItem("login-remember-user");
               }
-              localStorage.removeItem("session");
+
               storeUser(response.data);
               setError("");
               navigate("/");

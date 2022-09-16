@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 interface UserInterface {
   user: {
+    accessToken: string;
+    refreshToken: string;
     userId: string;
     username: string;
   };

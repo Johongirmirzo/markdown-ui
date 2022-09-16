@@ -124,11 +124,6 @@ const Navbar = ({
           </>
         ) : (
           <>
-            <NavCreateMarkdownButton
-              onClick={() => getIsCreatingMarkdownValue(true)}
-            >
-              Create Markdown
-            </NavCreateMarkdownButton>
             <NavLogoutButton onClick={handleLogoutClick}>
               Logout
             </NavLogoutButton>
