@@ -1,7 +1,4 @@
 import styled, { css } from "styled-components";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 import {
   Form,
