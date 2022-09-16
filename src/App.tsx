@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, useContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Loader from "./components/Loader/Loader";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import { AuthContext } from "./context/AuthContext";
 
-function App() {
+const Home = React.lazy(() => import("./pages/Home/Home"));
+const Register = React.lazy(() => import("./pages/Register/Register"));
+const Login = React.lazy(() => import("./pages/Login/Login"));
+const NotFound = React.lazy(() => import("./pages/NotFound/NotFound"));
+
+const App = () => {
+  const { user } = useContext(AuthContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <Suspense fallback={<Loader />}>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={Object.keys(user).length > 0 ? <Home /> : <Login />}
+            />
+            <Route path="/register" element={<Register user={user} />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </Suspense>
+    </ErrorBoundary>
   );
-}
+};
 
 export default App;
