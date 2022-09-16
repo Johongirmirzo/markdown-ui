@@ -1,5 +1,5 @@
 export const ENDPOINTS = {
-    BASE_URL: "http://localhost:5500/api",
+    BASE_URL: "https://markdowwn.herokuapp.com/api",
     REGISTER_USER: "/auth/register",
     LOGIN_USER: "/auth/login",
     LOGOUT_USER: "/auth/logout",
