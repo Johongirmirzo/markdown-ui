@@ -8,7 +8,6 @@ import {
   RegisterFormBox,
   RegisterTextBox,
   RegisterTitle,
-  RegisterDescription,
   RegisterForm,
   RegisterFormControl,
   RegisterLabel,
@@ -38,10 +37,7 @@ const Register = () => {
           </Box>
         )}
         <RegisterTextBox>
-          <RegisterTitle>In-Browser Markdown Editor</RegisterTitle>
-          <RegisterDescription>
-            Please create an account and start the adventure
-          </RegisterDescription>
+          <RegisterTitle>Create An Account</RegisterTitle>
         </RegisterTextBox>
         <Formik
           initialValues={{

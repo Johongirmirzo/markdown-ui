@@ -55,10 +55,7 @@ const Login = () => {
           </Box>
         )}
         <LoginTextBox>
-          <LoginTitle>In-Browser Markdown Editor</LoginTitle>
-          <LoginDescription>
-            Please sign-in to your account and start the adventure
-          </LoginDescription>
+          <LoginTitle>Login To Your Account</LoginTitle>
         </LoginTextBox>
         {session && (
           <Alert status="error" sx={alerWarningStyles}>

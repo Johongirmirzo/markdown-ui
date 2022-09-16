@@ -10,10 +10,10 @@ export const API = axios.create({
 API.interceptors.response.use(response =>{
     return response;
 }, err =>{
-    // if(err.response?.data?.loginRequired){
-    //     localStorage.removeItem("user");
-    //     localStorage.setItem("session", "Your session has expired. Please login again.");
-    //     window.location.href = "/"
-    // }
+    if(err.response?.data?.loginRequired){
+        localStorage.removeItem("user");
+        localStorage.setItem("session", "Your session has expired. Please login again.");
+        window.location.href = "/"
+    }
     console.log(err)
 })
