@@ -26,6 +26,9 @@ const MarkdownPreviewerContainer = styled.div`
   padding: 15px;
   color: hsl(0, 0%, 80%);
 
+  & > * {
+    margin: 10px 0;
+  }
   & h1,
   h2,
   h3,
@@ -64,7 +67,9 @@ const MarkdownPreviewerContainer = styled.div`
   ol {
     padding-left: 30px;
   }
-
+  & pre {
+    margin: 10px 0;
+  }
   & blockquote {
     background: #555;
     padding: 25px;
